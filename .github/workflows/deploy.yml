@@ -22,7 +22,7 @@ jobs:
         uses: actions/configure-pages@v3  # Configure GitHub Pages
 
       - name: Upload des fichiers
-        uses: actions/upload-artifact@v2  # ✅ Nouvelle action recommandée
+        uses: actions/upload-artifact@v4  # ✅ Nouvelle action recommandée
         with:
           name: github-pages  # Nom de l’artefact
           path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris
