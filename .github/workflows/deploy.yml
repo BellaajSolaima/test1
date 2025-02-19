@@ -23,7 +23,7 @@ jobs:
         uses: actions/configure-pages@v4  # Configurer GitHub Pages
 
       - name: Upload static files
-        uses: actions/upload-pages-artifact@v2  # ✅ Nouvelle action correcte
+        uses: actions/upload-pages-artifact@v2  # ✅ Nouvelle version correcte
         with:
           path: .  # Prend tous les fichiers HTML/CSS/JS
 
@@ -38,4 +38,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # ✅ Version mise à jour
+        uses: actions/deploy-pages@v2  # ✅ Nouvelle version correcte
