@@ -16,21 +16,16 @@ jobs:
 
     steps:
       - name: Checkout du code
-        uses: actions/checkout@v4  # Récupère le code du dépôt
+        uses: actions/checkout@v3  # Récupère le code du dépôt
 
       - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4  # Configure GitHub Pages
+        uses: actions/configure-pages@v3  # Configure GitHub Pages
 
-      - name: Préparer les fichiers pour le déploiement
-        run: |
-          mkdir public
-          cp -r * public
-          echo "Les fichiers sont prêts pour le déploiement"
-
-      - name: Upload des fichiers (nouvelle version)
-        uses: actions/upload-pages-artifact@v2  # ✅ Version correcte
+      - name: Upload des fichiers
+        uses: actions/upload-artifact@v4  # ✅ Nouvelle action recommandée
         with:
-          path: public  # 📌 On envoie uniquement le dossier public
+          name: github-pages  # Nom de l’artefact
+          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris
 
       - name: Déployer sur GitHub Pages
-        uses: actions/deploy-pages@v2  # ✅ Version mise à jour
+        uses: actions/deploy-pages@v1  # Déploie les fichiers sur GitHub Pages
