@@ -21,11 +21,17 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4  # Configure GitHub Pages
 
+      - name: Build le site (facultatif si fichiers HTML statiques)
+        run: |
+          mkdir public
+          cp -r * public
+          echo "Build terminé"
+
       - name: Upload des fichiers
         uses: actions/upload-pages-artifact@v2  # ✅ Version correcte
         with:
           name: github-pages
-          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris
+          path: public  # 📌 On envoie bien la version buildée
 
       - name: Déployer sur GitHub Pages
         uses: actions/deploy-pages@v2  # ✅ Version mise à jour
