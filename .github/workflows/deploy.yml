@@ -1,5 +1,7 @@
 name: Deploy Static Website to GitHub Pages
 
+name: Deploy Static Website to GitHub Pages
+
 on:
   push:
     branches:
@@ -22,10 +24,10 @@ jobs:
         uses: actions/configure-pages@v4  # Configure GitHub Pages
 
       - name: Upload des fichiers
-        uses: actions/upload-pages-artifact@v2  # ✅ Correctif : Compatible GitHub Pages
+        uses: actions/upload-pages-artifact@v2  # ✅ Nouvelle action compatible
         with:
-          name: github-pages  # Nom de l’artefact
-          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris en compte
+          name: github-pages
+          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris
 
       - name: Déployer sur GitHub Pages
-        uses: actions/deploy-pages@v2  # Déploie les fichiers sur GitHub Pages
+        uses: actions/deploy-pages@v2  # ✅ Version mise à jour
