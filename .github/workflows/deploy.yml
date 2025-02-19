@@ -13,24 +13,24 @@ permissions:
 jobs:
   build:
     name: Build Static Website
-    runs-on: ubuntu-latest  # Exécuter sur un serveur Linux
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4  # Récupérer le code du dépôt
 
       - name: Upload static files
-        uses: actions/upload-pages-artifact@v2  # Nouvelle version pour GitHub Pages
+        uses: actions/upload-pages-artifact@v2  # Correctif : Utiliser la bonne action
         with:
           name: github-pages
           path: .  # Tous les fichiers HTML/CSS/JS du projet
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: build  # Dépend du job `build`, il doit être terminé avant
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # Utiliser la version mise à jour pour le déploiement
+        uses: actions/deploy-pages@v2  # Correctif : Utiliser `v2`
