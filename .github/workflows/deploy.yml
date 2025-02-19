@@ -1,7 +1,5 @@
 name: Deploy Static Website to GitHub Pages
 
-name: Deploy Static Website to GitHub Pages
-
 on:
   push:
     branches:
