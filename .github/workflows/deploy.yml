@@ -1,0 +1,30 @@
+name: Deploy Static Website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Exécuter l’action lors d’un push sur la branche `main`
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write  # Autoriser l'accès à GitHub Pages
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Exécuter le workflow sur une machine Linux
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3  # Récupérer le code du dépôt
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3  # Configurer GitHub Pages
+
+      - name: Upload des fichiers
+        uses: actions/upload-pages-artifact@v2  # Upload des fichiers HTML/CSS/JS
+        with:
+          path: .  # Tous les fichiers du projet seront pris en compte
+
+      - name: Déployer sur GitHub Pages
+        uses: actions/deploy-pages@v2  # Déploiement final sur GitHub Pages
