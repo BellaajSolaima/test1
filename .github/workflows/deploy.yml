@@ -19,13 +19,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4  # Récupérer le code du dépôt
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4  # Configuration de GitHub Pages
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4  # Configurer GitHub Pages
 
       - name: Upload static files
-        uses: actions/upload-pages-artifact@v2  # ✅ Version correcte pour GitHub Pages
+        uses: actions/upload-pages-artifact@v2  # ✅ Nouvelle action correcte
         with:
-          path: .  # Tous les fichiers HTML/CSS/JS du projet seront pris
+          path: .  # Prend tous les fichiers HTML/CSS/JS
 
   deploy:
     name: Deploy to GitHub Pages
@@ -38,4 +38,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # ✅ Utilisation de `deploy-pages@v2`
+        uses: actions/deploy-pages@v2  # ✅ Version mise à jour
