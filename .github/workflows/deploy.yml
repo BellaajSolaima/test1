@@ -3,34 +3,47 @@ name: Deploy Static Website to GitHub Pages
 on:
   push:
     branches:
-      - main  # Déclencher l'action lorsqu'un commit est poussé sur `main`
+      - main  # Exécuter l'action sur push vers main
 
 permissions:
   contents: read
   pages: write
-  id-token: write  # Autorise l'accès à GitHub Pages
+  id-token: write  # Permet d'écrire sur GitHub Pages
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest  # Utilise une machine Linux
+  build:
+    name: Build Static Website
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout du code
-        uses: actions/checkout@v4  # Récupère le code du dépôt
+        uses: actions/checkout@v4  # Récupérer le code du dépôt
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4  # Configure GitHub Pages
-
-      - name: Préparer les fichiers pour le déploiement
+      - name: Préparer les fichiers
         run: |
           mkdir public
           cp -r * public
           echo "Fichiers préparés dans le dossier public"
 
       - name: Upload des fichiers pour GitHub Pages
-        uses: actions/upload-pages-artifact@v2  # ✅ Version correcte
+        uses: actions/upload-pages-artifact@v2  # ✅ Upload des fichiers pour Pages
         with:
-          path: public  # 📌 On upload seulement le dossier `public`
+          path: public
 
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build  # 🚀 Dépend du job de build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
       - name: Déployer sur GitHub Pages
-        uses: actions/deploy-pages@v2  # ✅ Version mise à jour
+        id: deployment
+        uses: actions/deploy-pages@v2  # ✅ Dernière version recommandée
